@@ -54,7 +54,7 @@ A = "0"
 operator = None
 B = None
 
-def claer_all():
+def clear_all():
     global A, B, operator
     A = "0"
     operator = None
@@ -67,11 +67,12 @@ def button_clicked(value):
         pass
     elif value in top_symbols:
         if value == "AC":
-            claer_all()
+            clear_all()
             label["text"] = "0"
         elif value == "+/-":
             result = float(label["text"]) * -1
-            label["text"] += str(result)
+            label["text"] = str(result)
+            
         elif value == "%":
             pass
     else: #digits or .
