@@ -55,7 +55,7 @@ git clone https://github.com/Itz-Caseay/Internship_on_python.git
 2. Navigate into the project directory.
 
 ```bash
-cd tkinter-calculator
+cd Internship_on_python
 ```
 
 3. Run the application.
