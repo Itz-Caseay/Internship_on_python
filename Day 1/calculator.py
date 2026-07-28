@@ -79,7 +79,9 @@ def button_clicked(value):
             label["text"] = remove_zero_decimal(result)
             
         elif value == "%":
-            pass
+            result = float(label["text"]) / 100
+            label["text"] = remove_zero_decimal(result)
+            
     else: #digits or .
         if value == ".":
             if value not in label["text"]:
