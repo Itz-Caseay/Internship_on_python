@@ -70,7 +70,22 @@ def button_clicked(value):
     
     if value in right_symbols:
         if value == "=":
-            pass
+            if A is not None and operator is not None:
+                B = label["text"]
+                numA = float(A)
+                numB = float(B)
+                
+                if operator == "+":
+                    label["text"] = remove_zero_decimal(numA + numB)
+                elif operator == "-":
+                    label["text"] = remove_zero_decimal(numA - numB)
+                elif operator == "×":
+                    label["text"] = remove_zero_decimal(numA * numB)
+                elif operator == "÷":
+                    label["text"] = remove_zero_decimal(numA / numB)
+                    
+                clear_all()
+            
         elif value in "+-×÷":
             if operator is None:
                 A = label["text"]
