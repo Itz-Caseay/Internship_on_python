@@ -67,7 +67,7 @@ python calculator.py
 ## Project Structure
 
 ```
-tkinter-calculator/
+Internship_on_python/
 │
 ├── calculator.py
 ├── README.md
