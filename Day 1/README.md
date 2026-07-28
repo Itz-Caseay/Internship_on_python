@@ -49,7 +49,7 @@ If a small Tkinter window appears, it is installed correctly.
 1. Clone the repository.
 
 ```bash
-git clone https://github.com/your-username/tkinter-calculator.git
+git clone https://github.com/Itz-Caseay/Internship_on_python.git
 ```
 
 2. Navigate into the project directory.
