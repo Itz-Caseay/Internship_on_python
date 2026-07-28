@@ -71,7 +71,7 @@ Internship_on_python/
 │
 ├── calculator.py
 ├── README.md
-└── screenshot.png (optional)
+└── screenshot.png
 ```
 
 ## How It Works
