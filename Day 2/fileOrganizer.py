@@ -10,4 +10,5 @@ for file in files:
             
     if os.path.exists(path+'/'+extension):
         shutil.move(path+'/'+file, path+'/'+extension+'/'+file)
-            
+        else:
+                        
