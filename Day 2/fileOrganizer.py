@@ -215,6 +215,10 @@ class FileOrganizerApp:
         }
         
         self.root.configure(bg=self.colors['bg'])
+        
+        # Initialize status_label as None
+        self.status_label = None
+        
         self.setup_ui()
         self.setup_menu()
         
@@ -265,7 +269,7 @@ class FileOrganizerApp:
         # Log
         self.create_log_section(main_frame)
         
-        # Status bar
+        # Status bar (create this before any log messages)
         self.create_status_bar()
         
     def create_title(self, parent):
@@ -527,8 +531,7 @@ class FileOrganizerApp:
         self.log_text.tag_configure('error', foreground='#cc0000')
         self.log_text.tag_configure('warning', foreground='#cc6600')
         
-        # Initial log message
-        self.log_message("Ready. Select a folder to begin.", 'info')
+        # Don't log here - status_label doesn't exist yet
         
     def create_status_bar(self):
         status_frame = tk.Frame(self.root, bg='#d4d0c8', relief='sunken', bd=1, height=25)
@@ -555,6 +558,9 @@ class FileOrganizerApp:
             anchor='e'
         )
         self.current_file_label.pack(side='right', padx=5)
+        
+        # Now we can log the initial message
+        self.log_message("Ready. Select a folder to begin.", 'info')
         
     def browse_folder(self):
         folder_path = filedialog.askdirectory(title="Select Folder to Organize")
@@ -795,8 +801,9 @@ class FileOrganizerApp:
         self.log_text.insert(tk.END, formatted_message, tag)
         self.log_text.see(tk.END)
         
-        # Update status
-        self.status_label.config(text=f"Status: {message[:40]}{'...' if len(message) > 40 else ''}")
+        # Update status if status_label exists
+        if self.status_label:
+            self.status_label.config(text=f"Status: {message[:40]}{'...' if len(message) > 40 else ''}")
         
     def show_about(self):
         about_text = """File Organizer v1.0
