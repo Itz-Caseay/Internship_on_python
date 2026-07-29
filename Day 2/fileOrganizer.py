@@ -6,4 +6,6 @@ files = os.listdir(path)
 
 for file in files:
     filename,extension = os.path.splitext(file)
-    
+    extension = extension[1:]
+            
+            
