@@ -56,6 +56,7 @@ git clone https://github.com/Itz-Caseay/Internship_on_python.git
 
 ```bash
 cd Internship_on_python
+cd "Day 1"
 ```
 
 3. Run the application.

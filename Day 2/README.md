@@ -69,7 +69,9 @@ python -m tkinter
 Clone the repository:
 
 ```bash
-git clone https://github.com/yourusername/file-organizer.git
+git clone https://github.com/Itz-Caseay/Internship_on_python.git
+cd Internship_on_python
+cd "Day 2"
 ```
 
 Navigate into the project:
