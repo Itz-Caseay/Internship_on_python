@@ -9,4 +9,5 @@ class ContactBook:
         self.root.title("Contact Book CLI")
         self.root.geometry("500x500")
         
-        
+        self.contacts = {}
+        self.file_path = "contacts.json"
