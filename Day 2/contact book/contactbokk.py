@@ -16,4 +16,6 @@ class ContactBook:
     def load_contacts(self): #1 usage
         if os.path.exists(self, self.file_path):
             with open(self.file_path, "r") as file:
-                self.contacts
+                self.contacts = json.load(file)
+        else:
+            
