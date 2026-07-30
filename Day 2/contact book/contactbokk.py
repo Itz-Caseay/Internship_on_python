@@ -14,4 +14,6 @@ class ContactBook:
         self.load_contacts()
         
     def load_contacts(self): #1 usage
-        if os.path.exists(self, self.file_path)
+        if os.path.exists(self, self.file_path):
+            with open(self.file_path, "r") as file:
+                self.contacts
