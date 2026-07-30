@@ -23,6 +23,11 @@ class ContactBook:
         self.add_button = tk.Button(self.root, text="Add Contacts", command=self.add_contact)
         self.add_button.pack(side="left", padx=10, pady=10)
         
+        self.edit_button = tk.Button(self.root, text="Edit Contacts", command=self.edit_button, state="disabled")
+        self.edit_button.pack(side="left", padx=10, pady=10)
+        
+        self.delete_button = tk.Button(self.root, text="Delete Contacts", command=self.delete_button, state="disabled")
+        self.delete_button.pack(side="left", padx=10, pady=10)
         
         
         
