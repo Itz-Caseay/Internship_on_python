@@ -18,4 +18,4 @@ class ContactBook:
             with open(self.file_path, "r") as file:
                 self.contacts = json.load(file)
         else:
-            
+            self.contacts = {}
