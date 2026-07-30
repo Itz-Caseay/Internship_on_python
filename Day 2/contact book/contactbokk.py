@@ -13,9 +13,12 @@ class ContactBook:
         self.file_path = "contacts.json"
         self.load_contacts()
         
+        self.listbox = tk.Listbox(self.root, font=("Arial", 12))
+        
     def load_contacts(self): #1 usage
         if os.path.exists(self, self.file_path):
             with open(self.file_path, "r") as file:
                 self.contacts = json.load(file)
         else:
             self.contacts = {}
+            
