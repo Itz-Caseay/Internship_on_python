@@ -13,4 +13,5 @@ class ContactBook:
         self.file_path = "contacts.json"
         self.load_contacts()
         
-    
+    def load_contacts(self): #1 usage
+        
