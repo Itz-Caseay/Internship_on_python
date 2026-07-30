@@ -7,3 +7,4 @@ class ContactBook:
     def __init__(self, root):
         self.root = root
         self.root.title("Contact Book CLI")
+        
