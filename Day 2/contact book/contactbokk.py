@@ -4,5 +4,5 @@ import os
 import json
 
 class ContactBook:
-    def __init__(self):
+    def __init__(self, root):
         self
