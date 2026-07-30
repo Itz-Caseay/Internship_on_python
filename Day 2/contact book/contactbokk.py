@@ -5,4 +5,4 @@ import json
 
 class ContactBook:
     def __init__(self, root):
-        self
+        self.root = root
