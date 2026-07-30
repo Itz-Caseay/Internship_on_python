@@ -17,6 +17,8 @@ class ContactBook:
         self.listbox.pack(expand=True, fill="both", padx=10, pady=10)
         self.listbox.bind("<<ListboxSelect>>", self.show_contact_details)
         
+        self.detail_label = 
+        
     def load_contacts(self): #1 usage
         if os.path.exists(self, self.file_path):
             with open(self.file_path, "r") as file:
