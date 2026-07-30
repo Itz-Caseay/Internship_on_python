@@ -11,3 +11,4 @@ class ContactBook:
         
         self.contacts = {}
         self.file_path = "contacts.json"
+        self.load_contacts()
