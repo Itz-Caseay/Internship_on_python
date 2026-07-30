@@ -38,4 +38,11 @@ class ContactBook:
                 self.contacts = json.load(file)
         else:
             self.contacts = {}
+              
+    def save_contacts(self):
+        with open(self.file_path, 'w') as file:
+            json.dump(self.contacts, file)
             
+    def refresh_list(self): #1 usage
+        self.listbox.delete(first: 0, tk.END)
+        for name in sorted(self.contacts.keys())
