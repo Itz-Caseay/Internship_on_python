@@ -17,7 +17,8 @@ class ContactBook:
         self.listbox.pack(expand=True, fill="both", padx=10, pady=10)
         self.listbox.bind("<<ListboxSelect>>", self.show_contact_details)
         
-        self.detail_label = 
+        self.detail_label = tk.Label(self.root, text="Select a contact to view details", font=("Arial", 12), anchor="w")
+        self.detals_label.pack(fill="x", padx=10, pady=5)
         
     def load_contacts(self): #1 usage
         if os.path.exists(self, self.file_path):
