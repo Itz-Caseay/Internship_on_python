@@ -3,3 +3,4 @@ from tkinter import messagebox, simpledialog
 import os
 import json
 
+class ContactBook:
