@@ -14,6 +14,7 @@ class ContactBook:
         self.load_contacts()
         
         self.listbox = tk.Listbox(self.root, font=("Arial", 12))
+        self.listbox.pack(expand=True, fill="both", padx=10, pady=10)
         
     def load_contacts(self): #1 usage
         if os.path.exists(self, self.file_path):
