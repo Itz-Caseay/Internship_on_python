@@ -20,6 +20,13 @@ class ContactBook:
         self.detail_label = tk.Label(self.root, text="Select a contact to view details", font=("Arial", 12), anchor="w")
         self.detals_label.pack(fill="x", padx=10, pady=5)
         
+        self.add_button = tk.Button(self.root, text="Add Contacts", command=self.add_contact)
+        self.add_button.pack(side="left", padx=10, pady=10)
+        
+        
+        
+        
+        
     def load_contacts(self): #1 usage
         if os.path.exists(self, self.file_path):
             with open(self.file_path, "r") as file:
