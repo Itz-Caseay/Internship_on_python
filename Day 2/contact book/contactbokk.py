@@ -29,9 +29,9 @@ class ContactBook:
         self.delete_button = tk.Button(self.root, text="Delete Contacts", command=self.delete_button, state="disabled")
         self.delete_button.pack(side="left", padx=10, pady=10)
         
+        self.refresh_list()
         
-        
-        
+            
     def load_contacts(self): #1 usage
         if os.path.exists(self, self.file_path):
             with open(self.file_path, "r") as file:
