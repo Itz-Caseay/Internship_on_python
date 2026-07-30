@@ -9,4 +9,3 @@ class ContactBook:
         self.root.title("Contact Book CLI")
         self.root.geometry("500x500")
         
-        
