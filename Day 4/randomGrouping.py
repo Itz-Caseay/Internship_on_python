@@ -30,3 +30,22 @@ def generate_groups():
 
 # Main Window
 root = tk.Tk()
+root.title("Group Generator")
+root.geometry("600x500")
+
+# Title
+title = tk.label(root, text="Group Generator", font=("Arial", 16, "bold"))
+title.pack(pady=10)
+
+# Instructions
+label = tk.Label(root, text="Enter one name per line: ")
+label.pack()
+
+# Input Box
+text_input = tk.Text(root, height=12, width=40)
+text_input.pack(pady=5)
+
+# Generate Button
+generate_btn = tk.Button(root, text="Generate Groups",
+                        font=("Arial", 12),
+                        command=generate_groups)
