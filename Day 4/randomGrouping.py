@@ -20,7 +20,7 @@ def generate_groups():
     # Display groups
     output.delete("1.0", tk.END)
     
-    for i, group enumerate(groups, start=1):
+    for i, group in enumerate(groups, start=1):
         output.insert(tk.END, f"Group {i}\n")
         output.insert(tk.END, "-"*20 + "\n")
         for member in group:
