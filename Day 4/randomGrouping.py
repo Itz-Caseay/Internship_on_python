@@ -59,3 +59,4 @@ output_label.pack()
 output = tk.Text(root, height=12, width=40)
 output.pack(pady=5)
 
+root.mainloop()
