@@ -8,7 +8,7 @@ import uvicorn
 
 # ----- CREATE FASTAPI APP -----
 app = FastAPI(
-    title="🌟 My Beautiful API",
+    title="My First API",
     description="A modern, production-ready API built with FastAPI",
     version="1.0.0",
     contact={
