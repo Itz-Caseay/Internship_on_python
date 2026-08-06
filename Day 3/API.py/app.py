@@ -525,7 +525,7 @@ async def beautiful_homepage():
                     </div>
                 </div>
                 <div class="badge-container">
-                    <span class="badge badge-primary">⚡ v1.0.0</span>
+                    <span class="badge badge-primary">v1.0.0</span>
                     <span class="badge badge-success">● Live</span>
                 </div>
             </div>
