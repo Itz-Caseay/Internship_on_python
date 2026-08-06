@@ -15,3 +15,18 @@ def generate_groups():
     random.shuffle(names)
     
     # create groups of 3
+    groups = [names[i:i+3] for i in range(0, len(names), 3)]
+    
+    # Display groups
+    output.delete("1.0", tk.END)
+    
+    for i, group enumerate(groups, start=1):
+        output.insert(tk.END, f"Group {i}\n")
+        output.insert(tk.END, "-"*20 + "\n")
+        for member in group:
+            output.insert(tk.END, f". {member}\n")
+        output.insert(tk.END, "\n")
+        
+
+# Main Window
+root = tk.Tk()
