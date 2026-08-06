@@ -52,3 +52,6 @@ generate_btn = tk.Button(root, text="Generate Groups",
 generate_btn.pack(pady=10)
 
 # Output Label
+output_label = tk.Label(root, text="Generated Groups: ")
+output_label.pack()
+
