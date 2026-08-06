@@ -49,3 +49,6 @@ text_input.pack(pady=5)
 generate_btn = tk.Button(root, text="Generate Groups",
                         font=("Arial", 12),
                         command=generate_groups)
+generate_btn.pack(pady=10)
+
+# Output Label
