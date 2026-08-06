@@ -8,7 +8,7 @@ def generate_groups():
     names == [name.strip() for name in names if name.strip()]
     
     if len(names)<3:
-        messagebox.showerror("Error": "Please enter atleast 3 names.")
+        messagebox.showerror("Error", "Please enter atleast 3 names.")
         return
     
     # shuffle names
