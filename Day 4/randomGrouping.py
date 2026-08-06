@@ -34,7 +34,7 @@ root.title("Group Generator")
 root.geometry("600x500")
 
 # Title
-title = tk.label(root, text="Group Generator", font=("Arial", 16, "bold"))
+title = tk.Label(root, text="Group Generator", font=("Arial", 16, "bold"))
 title.pack(pady=10)
 
 # Instructions
