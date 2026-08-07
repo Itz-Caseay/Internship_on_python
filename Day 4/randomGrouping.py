@@ -137,7 +137,7 @@ class GroupGeneratorApp:
         
         title_label = tk.Label(
             header_content,
-            text="🎯 Group Generator Pro",
+            text="Group Generator",
             font=self.FONTS['title'],
             bg=self.COLORS['white'],
             fg=self.COLORS['primary']
@@ -177,7 +177,7 @@ class GroupGeneratorApp:
         
         tk.Label(
             header,
-            text="📝 Enter Names",
+            text="Enter Names",
             font=self.FONTS['heading'],
             bg=self.COLORS['primary'],
             fg=self.COLORS['white']
@@ -260,7 +260,7 @@ class GroupGeneratorApp:
         
         self.shuffle_check = tk.Checkbutton(
             checks_frame,
-            text="🔀 Shuffle",
+            text="Shuffle",
             variable=self.shuffle_mode_var,
             font=self.FONTS['body'],
             bg=self.COLORS['white'],
@@ -271,7 +271,7 @@ class GroupGeneratorApp:
         
         self.dup_check = tk.Checkbutton(
             checks_frame,
-            text="🚫 Remove Duplicates",
+            text="Remove Duplicates",
             variable=self.remove_duplicates_var,
             font=self.FONTS['body'],
             bg=self.COLORS['white'],
@@ -286,7 +286,7 @@ class GroupGeneratorApp:
         
         self.generate_btn = tk.Button(
             button_frame,
-            text="🚀 Generate Groups",
+            text="Generate Groups",
             font=self.FONTS['body_bold'],
             bg=self.COLORS['primary'],
             fg=self.COLORS['white'],
@@ -301,7 +301,7 @@ class GroupGeneratorApp:
         
         self.clear_btn = tk.Button(
             button_frame,
-            text="🗑️ Clear",
+            text="Clear",
             font=self.FONTS['body'],
             bg=self.COLORS['light_gray'],
             fg=self.COLORS['dark'],
@@ -328,7 +328,7 @@ class GroupGeneratorApp:
         
         tk.Label(
             header,
-            text="📋 Generated Groups",
+            text="Generated Groups",
             font=self.FONTS['heading'],
             bg=self.COLORS['secondary'],
             fg=self.COLORS['white']
@@ -345,7 +345,7 @@ class GroupGeneratorApp:
         
         self.copy_btn = tk.Button(
             header,
-            text="📋 Copy",
+            text="Copy",
             font=self.FONTS['small_bold'],
             bg=self.COLORS['white'],
             fg=self.COLORS['secondary'],
@@ -402,7 +402,7 @@ class GroupGeneratorApp:
     def _show_welcome_message(self):
         """Show welcome message in output"""
         self.output.delete("1.0", tk.END)
-        self.output.insert("1.0", "🎯 Click 'Generate Groups' to create teams!\n\n", 'group_header')
+        self.output.insert("1.0", "Click 'Generate Groups' to create teams!\n\n", 'group_header')
         self.output.insert("end", "━" * 40 + "\n\n", 'group_separator')
         self.output.insert("end", "💡 Tips:\n", 'summary')
         self.output.insert("end", "  • Enter one name per line\n", 'member_name')
