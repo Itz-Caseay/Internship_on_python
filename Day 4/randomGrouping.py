@@ -6,7 +6,7 @@ import re
 from datetime import datetime
 
 class GroupGeneratorApp:
-    """Group Generator Application"""
+    """Beautiful Group Generator Application"""
     
     # Modern color scheme
     COLORS = {
@@ -25,12 +25,12 @@ class GroupGeneratorApp:
         'card_bg': '#FFFFFF',
         'border': '#DEE2E6',
         'shadow': '#0000001A',
-        'output_bg': '#1E1E2E',  # Dark background for output
-        'output_text': '#FFFFFF',  # White text for output
-        'group_header': '#FF6B6B',  # Red for group headers
-        'group_separator': '#4ECDC4',  # Teal for separators
-        'member_name': '#95E1D3',  # Light green for members
-        'member_bullet': '#FFE66D'  # Yellow for bullets
+        'output_bg': '#1E1E2E',
+        'output_text': '#FFFFFF',
+        'group_header': '#FF6B6B',
+        'group_separator': '#4ECDC4',
+        'member_name': '#95E1D3',
+        'member_bullet': '#FFE66D'
     }
     
     FONTS = {
@@ -40,15 +40,15 @@ class GroupGeneratorApp:
         'body': ('Segoe UI', 11),
         'body_bold': ('Segoe UI', 11, 'bold'),
         'small': ('Segoe UI', 9),
-        'small_bold': ('Segoe UI', 9, 'bold'),  # ADDED MISSING FONT
+        'small_bold': ('Segoe UI', 9, 'bold'),
         'mono': ('Consolas', 11)
     }
     
     def __init__(self, root):
         self.root = root
-        self.root.title("Group Generator")
-        self.root.geometry("900x750")
-        self.root.minsize(800, 650)
+        self.root.title("🎯 Group Generator Pro")
+        self.root.geometry("1000x800")  # Increased window size
+        self.root.minsize(900, 700)
         self.root.configure(bg=self.COLORS['background'])
         
         # Variables
@@ -69,7 +69,6 @@ class GroupGeneratorApp:
         style = ttk.Style()
         style.theme_use('clam')
         
-        # Custom styles for buttons
         style.configure('Primary.TButton',
                        background=self.COLORS['primary'],
                        foreground='white',
@@ -109,18 +108,18 @@ class GroupGeneratorApp:
         main_container = tk.Frame(self.root, bg=self.COLORS['background'])
         main_container.pack(fill='both', expand=True, padx=20, pady=20)
         
-        # Header with gradient effect
+        # Header
         self._create_header(main_container)
         
-        # Main content
+        # Main content - 40/60 split
         content_frame = tk.Frame(main_container, bg=self.COLORS['background'])
         content_frame.pack(fill='both', expand=True, pady=10)
         
-        # Left panel - Input
+        # Left panel - Input (40%)
         left_panel = self._create_input_panel(content_frame)
-        left_panel.pack(side='left', fill='both', expand=True, padx=(0, 10))
+        left_panel.pack(side='left', fill='both', expand=False, padx=(0, 10))
         
-        # Right panel - Output
+        # Right panel - Output (60%)
         right_panel = self._create_output_panel(content_frame)
         right_panel.pack(side='right', fill='both', expand=True, padx=(10, 0))
         
@@ -133,11 +132,9 @@ class GroupGeneratorApp:
         header_frame.pack(fill='x', pady=(0, 15))
         header_frame.configure(highlightbackground=self.COLORS['border'], highlightthickness=1)
         
-        # Main header
         header_content = tk.Frame(header_frame, bg=self.COLORS['white'])
         header_content.pack(fill='x', padx=20, pady=15)
         
-        # Title with icon
         title_label = tk.Label(
             header_content,
             text="🎯 Group Generator Pro",
@@ -147,7 +144,6 @@ class GroupGeneratorApp:
         )
         title_label.pack(side='left')
         
-        # Subtitle
         subtitle = tk.Label(
             header_content,
             text="Random Team Group Maker",
@@ -157,7 +153,6 @@ class GroupGeneratorApp:
         )
         subtitle.pack(side='left', padx=(10, 0))
         
-        # Stats badge
         self.stats_badge = tk.Label(
             header_content,
             text="👥 0 members",
@@ -170,9 +165,10 @@ class GroupGeneratorApp:
         self.stats_badge.pack(side='right')
     
     def _create_input_panel(self, parent):
-        """Create the input panel"""
-        panel = tk.Frame(parent, bg=self.COLORS['white'], relief='flat', bd=0)
+        """Create the input panel (40%)"""
+        panel = tk.Frame(parent, bg=self.COLORS['white'], relief='flat', bd=0, width=400)
         panel.configure(highlightbackground=self.COLORS['border'], highlightthickness=1)
+        panel.pack_propagate(False)  # Prevent shrinking
         
         # Panel header
         header = tk.Frame(panel, bg=self.COLORS['primary'], height=40)
@@ -187,7 +183,6 @@ class GroupGeneratorApp:
             fg=self.COLORS['white']
         ).pack(side='left', padx=15, pady=8)
         
-        # Member count
         self.member_count = tk.Label(
             header,
             text="0 members",
@@ -201,7 +196,6 @@ class GroupGeneratorApp:
         input_frame = tk.Frame(panel, bg=self.COLORS['white'])
         input_frame.pack(fill='both', expand=True, padx=15, pady=10)
         
-        # Instructions
         tk.Label(
             input_frame,
             text="Enter one name per line:",
@@ -210,13 +204,13 @@ class GroupGeneratorApp:
             fg=self.COLORS['dark']
         ).pack(anchor='w', pady=(0, 5))
         
-        # Text input with scrollbar
+        # Text input
         text_frame = tk.Frame(input_frame, bg=self.COLORS['white'])
         text_frame.pack(fill='both', expand=True)
         
         self.text_input = scrolledtext.ScrolledText(
             text_frame,
-            height=10,
+            height=12,
             font=self.FONTS['body'],
             bg=self.COLORS['white'],
             fg=self.COLORS['dark'],
@@ -264,7 +258,6 @@ class GroupGeneratorApp:
         checks_frame = tk.Frame(options_frame, bg=self.COLORS['white'])
         checks_frame.pack(side='right')
         
-        # Shuffle checkbox
         self.shuffle_check = tk.Checkbutton(
             checks_frame,
             text="🔀 Shuffle",
@@ -276,7 +269,6 @@ class GroupGeneratorApp:
         )
         self.shuffle_check.pack(side='left', padx=(0, 10))
         
-        # Remove duplicates checkbox
         self.dup_check = tk.Checkbutton(
             checks_frame,
             text="🚫 Remove Duplicates",
@@ -292,7 +284,6 @@ class GroupGeneratorApp:
         button_frame = tk.Frame(input_frame, bg=self.COLORS['white'])
         button_frame.pack(fill='x', pady=(10, 0))
         
-        # Generate button
         self.generate_btn = tk.Button(
             button_frame,
             text="🚀 Generate Groups",
@@ -308,7 +299,6 @@ class GroupGeneratorApp:
         self.generate_btn.pack(side='left', fill='x', expand=True, padx=(0, 5))
         self._add_hover_effect(self.generate_btn, self.COLORS['primary'], self.COLORS['primary_dark'])
         
-        # Clear button
         self.clear_btn = tk.Button(
             button_frame,
             text="🗑️ Clear",
@@ -327,7 +317,7 @@ class GroupGeneratorApp:
         return panel
     
     def _create_output_panel(self, parent):
-        """Create the output panel - FIXED VISIBILITY"""
+        """Create the output panel (60%) - BIGGER"""
         panel = tk.Frame(parent, bg=self.COLORS['white'], relief='flat', bd=0)
         panel.configure(highlightbackground=self.COLORS['border'], highlightthickness=1)
         
@@ -338,13 +328,12 @@ class GroupGeneratorApp:
         
         tk.Label(
             header,
-            text="Generated Groups",
+            text="📋 Generated Groups",
             font=self.FONTS['heading'],
             bg=self.COLORS['secondary'],
             fg=self.COLORS['white']
         ).pack(side='left', padx=15, pady=8)
         
-        # Group count badge
         self.group_count = tk.Label(
             header,
             text="0 groups",
@@ -354,11 +343,10 @@ class GroupGeneratorApp:
         )
         self.group_count.pack(side='left', padx=10)
         
-        # Copy button
         self.copy_btn = tk.Button(
             header,
             text="📋 Copy",
-            font=self.FONTS['small_bold'],  # Now this exists
+            font=self.FONTS['small_bold'],
             bg=self.COLORS['white'],
             fg=self.COLORS['secondary'],
             relief='flat',
@@ -370,16 +358,16 @@ class GroupGeneratorApp:
         )
         self.copy_btn.pack(side='right', padx=10)
         
-        # Output area - FIXED VISIBILITY
+        # Output area - BIGGER
         output_frame = tk.Frame(panel, bg=self.COLORS['dark'])
         output_frame.pack(fill='both', expand=True, padx=15, pady=10)
         
         self.output = scrolledtext.ScrolledText(
             output_frame,
-            height=14,
+            height=18,  # Increased height
             font=self.FONTS['mono'],
-            bg=self.COLORS['dark'],  # Dark background
-            fg=self.COLORS['white'],  # White text for visibility
+            bg=self.COLORS['dark'],
+            fg=self.COLORS['white'],
             insertbackground='white',
             relief='flat',
             bd=0,
@@ -390,24 +378,23 @@ class GroupGeneratorApp:
         )
         self.output.pack(fill='both', expand=True)
         
-        # Configure text tags for styling - CLEARLY VISIBLE COLORS
+        # Configure text tags for styling
         self.output.tag_configure('group_header', 
-                                 foreground='#FF6B6B',  # Bright red
+                                 foreground='#FF6B6B',
                                  font=('Consolas', 13, 'bold'))
         self.output.tag_configure('group_separator', 
-                                 foreground='#4ECDC4',  # Teal
+                                 foreground='#4ECDC4',
                                  font=('Consolas', 10))
         self.output.tag_configure('member_name', 
-                                 foreground='#95E1D3',  # Light green
+                                 foreground='#95E1D3',
                                  font=('Consolas', 11))
         self.output.tag_configure('member_bullet', 
-                                 foreground='#FFE66D',  # Yellow
+                                 foreground='#FFE66D',
                                  font=('Consolas', 11, 'bold'))
         self.output.tag_configure('summary', 
-                                 foreground='#FF9FF3',  # Pink
+                                 foreground='#FF9FF3',
                                  font=('Consolas', 11, 'bold'))
         
-        # Initial message
         self._show_welcome_message()
         
         return panel
@@ -449,7 +436,6 @@ class GroupGeneratorApp:
         )
         self.status_time.pack(side='right', padx=10)
         
-        # Update time
         self._update_time()
     
     def _update_time(self):
@@ -482,16 +468,15 @@ class GroupGeneratorApp:
     def _add_sample_data(self):
         """Add sample data for demo"""
         sample_names = [
-            "Alice Johnson",
-            "Bob Smith",
-            "Charlie Brown",
-            "Diana Prince",
-            "Evan Wright",
-            "Fiona Gallagher",
-            "George Harrison",
-            "Hannah Montana",
-            "Ian Malcolm",
-            "Zachary Quinto"
+            "Alice Johnson", "Bob Smith", "Charlie Brown",
+            "Diana Prince", "Evan Wright", "Fiona Gallagher",
+            "George Harrison", "Hannah Montana", "Ian Malcolm",
+            "Julia Roberts", "Kevin Hart", "Laura Palmer",
+            "Michael Scott", "Nancy Drew", "Oscar Wilde",
+            "Patricia Arquette", "Quentin Tarantino", "Rachel Green",
+            "Steve Jobs", "Tina Fey", "Uma Thurman",
+            "Victor Hugo", "Wendy Williams", "Xavier Riddle",
+            "Yvonne Strahovski", "Zachary Quinto"
         ]
         
         self.text_input.insert("1.0", "\n".join(sample_names))
@@ -513,7 +498,7 @@ class GroupGeneratorApp:
         self.status_label.config(text=f"{'❌' if is_error else '✅'} {message}", fg=color)
     
     def generate_groups(self):
-        """Generate groups from input names - FIXED VISIBILITY"""
+        """Generate groups from input names"""
         try:
             # Get names
             text = self.text_input.get("1.0", tk.END).strip()
@@ -521,7 +506,6 @@ class GroupGeneratorApp:
             
             # Remove duplicates if enabled
             if self.remove_duplicates_var.get():
-                # Preserve order while removing duplicates
                 seen = set()
                 names = [x for x in names if not (x in seen or seen.add(x))]
             
@@ -547,9 +531,8 @@ class GroupGeneratorApp:
             # Clear output
             self.output.delete("1.0", tk.END)
             
-            # Display groups with CLEAR VISIBILITY
+            # Display groups
             for i, group in enumerate(groups, start=1):
-                # Group header - BRIGHT RED
                 self.output.insert(
                     tk.END,
                     f"🎯 GROUP {i}\n",
@@ -561,7 +544,6 @@ class GroupGeneratorApp:
                     'group_separator'
                 )
                 
-                # Members with CLEAR VISIBILITY
                 for member in group:
                     self.output.insert(
                         tk.END,
@@ -576,7 +558,7 @@ class GroupGeneratorApp:
                 
                 self.output.insert(tk.END, "\n")
             
-            # Statistics summary - PINK
+            # Statistics
             total_members = len(names)
             total_groups = len(groups)
             avg_size = total_members / total_groups
@@ -607,14 +589,10 @@ class GroupGeneratorApp:
                 'member_name'
             )
             
-            # Enable copy button
             self.copy_btn.config(state='normal')
             self.group_count.config(text=f"{total_groups} groups")
-            
-            # Update status
             self.set_status(f"Generated {total_groups} groups with {total_members} members")
             
-            # Show success message
             messagebox.showinfo(
                 "Success",
                 f"✅ Generated {total_groups} groups!\n"
