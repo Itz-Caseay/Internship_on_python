@@ -24,7 +24,13 @@ class GroupGeneratorApp:
         'background': '#F0F2F5',
         'card_bg': '#FFFFFF',
         'border': '#DEE2E6',
-        'shadow': '#0000001A'
+        'shadow': '#0000001A',
+        'output_bg': '#1E1E2E',  # Dark background for output
+        'output_text': '#FFFFFF',  # White text for output
+        'group_header': '#FF6B6B',  # Red for group headers
+        'group_separator': '#4ECDC4',  # Teal for separators
+        'member_name': '#95E1D3',  # Light green for members
+        'member_bullet': '#FFE66D'  # Yellow for bullets
     }
     
     FONTS = {
@@ -34,14 +40,14 @@ class GroupGeneratorApp:
         'body': ('Segoe UI', 11),
         'body_bold': ('Segoe UI', 11, 'bold'),
         'small': ('Segoe UI', 9),
-        'mono': ('Consolas', 10, 'bold')
+        'mono': ('Consolas', 11)
     }
     
     def __init__(self, root):
         self.root = root
         self.root.title("🎯 Group Generator Pro")
-        self.root.geometry("800x700")
-        self.root.minsize(700, 600)
+        self.root.geometry("900x750")
+        self.root.minsize(800, 650)
         self.root.configure(bg=self.COLORS['background'])
         
         # Variables
@@ -209,9 +215,10 @@ class GroupGeneratorApp:
         
         self.text_input = scrolledtext.ScrolledText(
             text_frame,
-            height=8,
+            height=10,
             font=self.FONTS['body'],
-            bg=self.COLORS['light_gray'],
+            bg=self.COLORS['white'],
+            fg=self.COLORS['dark'],
             relief='flat',
             bd=0,
             highlightthickness=1,
@@ -319,7 +326,7 @@ class GroupGeneratorApp:
         return panel
     
     def _create_output_panel(self, parent):
-        """Create the output panel"""
+        """Create the output panel - FIXED VISIBILITY"""
         panel = tk.Frame(parent, bg=self.COLORS['white'], relief='flat', bd=0)
         panel.configure(highlightbackground=self.COLORS['border'], highlightthickness=1)
         
@@ -336,54 +343,84 @@ class GroupGeneratorApp:
             fg=self.COLORS['white']
         ).pack(side='left', padx=15, pady=8)
         
+        # Group count badge
+        self.group_count = tk.Label(
+            header,
+            text="0 groups",
+            font=self.FONTS['small'],
+            bg=self.COLORS['secondary'],
+            fg=self.COLORS['white']
+        )
+        self.group_count.pack(side='left', padx=10)
+        
         # Copy button
         self.copy_btn = tk.Button(
             header,
             text="📋 Copy",
-            font=self.FONTS['small'],
+            font=self.FONTS['small_bold'],
             bg=self.COLORS['white'],
             fg=self.COLORS['secondary'],
             relief='flat',
-            padx=10,
-            pady=2,
+            padx=15,
+            pady=4,
             cursor='hand2',
             state='disabled',
             command=self.copy_output
         )
         self.copy_btn.pack(side='right', padx=10)
         
-        # Output area
-        output_frame = tk.Frame(panel, bg=self.COLORS['white'])
+        # Output area - FIXED VISIBILITY
+        output_frame = tk.Frame(panel, bg=self.COLORS['dark'])
         output_frame.pack(fill='both', expand=True, padx=15, pady=10)
         
         self.output = scrolledtext.ScrolledText(
             output_frame,
-            height=12,
+            height=14,
             font=self.FONTS['mono'],
-            bg=self.COLORS['dark'],
-            fg=self.COLORS['white'],
+            bg=self.COLORS['dark'],  # Dark background
+            fg=self.COLORS['white'],  # White text for visibility
+            insertbackground='white',
             relief='flat',
             bd=0,
             highlightthickness=1,
             highlightcolor=self.COLORS['secondary'],
-            highlightbackground=self.COLORS['border']
+            highlightbackground=self.COLORS['border'],
+            wrap='word'
         )
         self.output.pack(fill='both', expand=True)
         
-        # Configure text tags for styling
-        self.output.tag_configure('group_header', foreground='#FF6B6B', font=self.FONTS['body_bold'])
-        self.output.tag_configure('group_separator', foreground='#4ECDC4')
-        self.output.tag_configure('member_name', foreground='#95E1D3')
-        self.output.tag_configure('member_bullet', foreground='#FFE66D')
+        # Configure text tags for styling - CLEARLY VISIBLE COLORS
+        self.output.tag_configure('group_header', 
+                                 foreground='#FF6B6B',  # Bright red
+                                 font=('Consolas', 13, 'bold'))
+        self.output.tag_configure('group_separator', 
+                                 foreground='#4ECDC4',  # Teal
+                                 font=('Consolas', 10))
+        self.output.tag_configure('member_name', 
+                                 foreground='#95E1D3',  # Light green
+                                 font=('Consolas', 11))
+        self.output.tag_configure('member_bullet', 
+                                 foreground='#FFE66D',  # Yellow
+                                 font=('Consolas', 11, 'bold'))
+        self.output.tag_configure('summary', 
+                                 foreground='#FF9FF3',  # Pink
+                                 font=('Consolas', 11, 'bold'))
         
         # Initial message
-        self.output.insert('1.0', "🎯 Click 'Generate Groups' to create teams!\n")
-        self.output.insert('end', "\n💡 Tips:\n")
-        self.output.insert('end', "  • Enter one name per line\n")
-        self.output.insert('end', "  • Adjust group size with the spinbox\n")
-        self.output.insert('end', "  • Toggle shuffle and duplicate removal\n")
+        self._show_welcome_message()
         
         return panel
+    
+    def _show_welcome_message(self):
+        """Show welcome message in output"""
+        self.output.delete("1.0", tk.END)
+        self.output.insert("1.0", "🎯 Click 'Generate Groups' to create teams!\n\n", 'group_header')
+        self.output.insert("end", "━" * 40 + "\n\n", 'group_separator')
+        self.output.insert("end", "💡 Tips:\n", 'summary')
+        self.output.insert("end", "  • Enter one name per line\n", 'member_name')
+        self.output.insert("end", "  • Adjust group size with the spinbox\n", 'member_name')
+        self.output.insert("end", "  • Toggle shuffle and duplicate removal\n", 'member_name')
+        self.output.insert("end", "  • Groups will appear here with colors\n", 'member_name')
     
     def _create_status_bar(self, parent):
         """Create the status bar"""
@@ -448,7 +485,28 @@ class GroupGeneratorApp:
             "Bob Smith",
             "Charlie Brown",
             "Diana Prince",
-            "Evan Wright"
+            "Evan Wright",
+            "Fiona Gallagher",
+            "George Harrison",
+            "Hannah Montana",
+            "Ian Malcolm",
+            "Julia Roberts",
+            "Kevin Hart",
+            "Laura Palmer",
+            "Michael Scott",
+            "Nancy Drew",
+            "Oscar Wilde",
+            "Patricia Arquette",
+            "Quentin Tarantino",
+            "Rachel Green",
+            "Steve Jobs",
+            "Tina Fey",
+            "Uma Thurman",
+            "Victor Hugo",
+            "Wendy Williams",
+            "Xavier Riddle",
+            "Yvonne Strahovski",
+            "Zachary Quinto"
         ]
         
         self.text_input.insert("1.0", "\n".join(sample_names))
@@ -460,6 +518,9 @@ class GroupGeneratorApp:
             self.text_input.delete("1.0", tk.END)
             self._update_stats()
             self.set_status("Input cleared")
+            self._show_welcome_message()
+            self.copy_btn.config(state='disabled')
+            self.group_count.config(text="0 groups")
     
     def set_status(self, message, is_error=False):
         """Set status bar message"""
@@ -467,7 +528,7 @@ class GroupGeneratorApp:
         self.status_label.config(text=f"{'❌' if is_error else '✅'} {message}", fg=color)
     
     def generate_groups(self):
-        """Generate groups from input names"""
+        """Generate groups from input names - FIXED VISIBILITY"""
         try:
             # Get names
             text = self.text_input.get("1.0", tk.END).strip()
@@ -475,14 +536,15 @@ class GroupGeneratorApp:
             
             # Remove duplicates if enabled
             if self.remove_duplicates_var.get():
-                names = list(dict.fromkeys(names))  # Preserve order while removing duplicates
+                # Preserve order while removing duplicates
+                seen = set()
+                names = [x for x in names if not (x in seen or seen.add(x))]
             
             # Validate
             if len(names) < 3:
                 messagebox.showerror(
                     "Error",
-                    "Please enter at least 3 names.\n"
-                    f"Current count: {len(names)}"
+                    f"Please enter at least 3 names.\nCurrent count: {len(names)}"
                 )
                 self.set_status("Not enough names", True)
                 return
@@ -500,25 +562,25 @@ class GroupGeneratorApp:
             # Clear output
             self.output.delete("1.0", tk.END)
             
-            # Display groups with styling
+            # Display groups with CLEAR VISIBILITY
             for i, group in enumerate(groups, start=1):
-                # Group header
+                # Group header - BRIGHT RED
                 self.output.insert(
                     tk.END,
-                    f"🎯 Group {i}\n",
+                    f"🎯 GROUP {i}\n",
                     'group_header'
                 )
                 self.output.insert(
                     tk.END,
-                    "═" * 30 + "\n",
+                    "═" * 35 + "\n",
                     'group_separator'
                 )
                 
-                # Members
+                # Members with CLEAR VISIBILITY
                 for member in group:
                     self.output.insert(
                         tk.END,
-                        f"● ",
+                        "● ",
                         'member_bullet'
                     )
                     self.output.insert(
@@ -529,29 +591,51 @@ class GroupGeneratorApp:
                 
                 self.output.insert(tk.END, "\n")
             
-            # Statistics
+            # Statistics summary - PINK
             total_members = len(names)
             total_groups = len(groups)
+            avg_size = total_members / total_groups
+            
             self.output.insert(
                 tk.END,
-                f"📊 Summary: {total_members} members in {total_groups} groups\n",
+                "━" * 35 + "\n",
                 'group_separator'
+            )
+            self.output.insert(
+                tk.END,
+                f"📊 SUMMARY\n",
+                'summary'
+            )
+            self.output.insert(
+                tk.END,
+                f"   Members: {total_members}\n",
+                'member_name'
+            )
+            self.output.insert(
+                tk.END,
+                f"   Groups: {total_groups}\n",
+                'member_name'
+            )
+            self.output.insert(
+                tk.END,
+                f"   Avg Group Size: {avg_size:.1f}\n",
+                'member_name'
             )
             
             # Enable copy button
             self.copy_btn.config(state='normal')
+            self.group_count.config(text=f"{total_groups} groups")
             
             # Update status
             self.set_status(f"Generated {total_groups} groups with {total_members} members")
             
-            # Show success message if many members
-            if total_members > 20:
-                messagebox.showinfo(
-                    "Success",
-                    f"✅ Generated {total_groups} groups\n"
-                    f"👥 {total_members} members\n"
-                    f"📊 Average group size: {total_members/total_groups:.1f}"
-                )
+            # Show success message
+            messagebox.showinfo(
+                "Success",
+                f"✅ Generated {total_groups} groups!\n"
+                f"👥 {total_members} members\n"
+                f"📊 Average group size: {avg_size:.1f}"
+            )
                 
         except ValueError as e:
             messagebox.showerror("Error", f"Invalid input: {e}")
