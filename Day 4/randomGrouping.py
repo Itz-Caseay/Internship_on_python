@@ -40,6 +40,7 @@ class GroupGeneratorApp:
         'body': ('Segoe UI', 11),
         'body_bold': ('Segoe UI', 11, 'bold'),
         'small': ('Segoe UI', 9),
+        'small_bold': ('Segoe UI', 9, 'bold'),  # ADDED MISSING FONT
         'mono': ('Consolas', 11)
     }
     
@@ -357,7 +358,7 @@ class GroupGeneratorApp:
         self.copy_btn = tk.Button(
             header,
             text="📋 Copy",
-            font=self.FONTS['small_bold'],
+            font=self.FONTS['small_bold'],  # Now this exists
             bg=self.COLORS['white'],
             fg=self.COLORS['secondary'],
             relief='flat',
