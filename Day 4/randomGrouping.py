@@ -448,28 +448,7 @@ class GroupGeneratorApp:
             "Bob Smith",
             "Charlie Brown",
             "Diana Prince",
-            "Evan Wright",
-            "Fiona Gallagher",
-            "George Harrison",
-            "Hannah Montana",
-            "Ian Malcolm",
-            "Julia Roberts",
-            "Kevin Hart",
-            "Laura Palmer",
-            "Michael Scott",
-            "Nancy Drew",
-            "Oscar Wilde",
-            "Patricia Arquette",
-            "Quentin Tarantino",
-            "Rachel Green",
-            "Steve Jobs",
-            "Tina Fey",
-            "Uma Thurman",
-            "Victor Hugo",
-            "Wendy Williams",
-            "Xavier Riddle",
-            "Yvonne Strahovski",
-            "Zachary Quinto"
+            "Evan Wright"
         ]
         
         self.text_input.insert("1.0", "\n".join(sample_names))
