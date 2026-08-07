@@ -404,7 +404,7 @@ class GroupGeneratorApp:
         self.output.delete("1.0", tk.END)
         self.output.insert("1.0", "Click 'Generate Groups' to create teams!\n\n", 'group_header')
         self.output.insert("end", "━" * 40 + "\n\n", 'group_separator')
-        self.output.insert("end", "💡 Tips:\n", 'summary')
+        self.output.insert("end", "Tips:\n", 'summary')
         self.output.insert("end", "  • Enter one name per line\n", 'member_name')
         self.output.insert("end", "  • Adjust group size with the spinbox\n", 'member_name')
         self.output.insert("end", "  • Toggle shuffle and duplicate removal\n", 'member_name')
