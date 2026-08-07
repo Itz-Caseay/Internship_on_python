@@ -6,7 +6,7 @@ import re
 from datetime import datetime
 
 class GroupGeneratorApp:
-    """Beautiful Group Generator Application"""
+    """Group Generator Application"""
     
     # Modern color scheme
     COLORS = {
@@ -46,7 +46,7 @@ class GroupGeneratorApp:
     
     def __init__(self, root):
         self.root = root
-        self.root.title("🎯 Group Generator Pro")
+        self.root.title("Group Generator")
         self.root.geometry("900x750")
         self.root.minsize(800, 650)
         self.root.configure(bg=self.COLORS['background'])
@@ -338,7 +338,7 @@ class GroupGeneratorApp:
         
         tk.Label(
             header,
-            text="📋 Generated Groups",
+            text="Generated Groups",
             font=self.FONTS['heading'],
             bg=self.COLORS['secondary'],
             fg=self.COLORS['white']
@@ -491,22 +491,6 @@ class GroupGeneratorApp:
             "George Harrison",
             "Hannah Montana",
             "Ian Malcolm",
-            "Julia Roberts",
-            "Kevin Hart",
-            "Laura Palmer",
-            "Michael Scott",
-            "Nancy Drew",
-            "Oscar Wilde",
-            "Patricia Arquette",
-            "Quentin Tarantino",
-            "Rachel Green",
-            "Steve Jobs",
-            "Tina Fey",
-            "Uma Thurman",
-            "Victor Hugo",
-            "Wendy Williams",
-            "Xavier Riddle",
-            "Yvonne Strahovski",
             "Zachary Quinto"
         ]
         
